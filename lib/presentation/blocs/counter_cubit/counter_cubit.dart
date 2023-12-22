@@ -13,7 +13,7 @@ class CounterCubit extends Cubit<CounterState> {
   void increaseBy(int value) {
     // * Este "modificara" el valor del estado => a esto en Cubit se le llama EMITIR un nuevo estado
     emit(state.copyWith(
-      counter: state.counter + 1,
+      counter: state.counter + value,
       transactionCount: state.transactionCount + 1,
     ));
   }
