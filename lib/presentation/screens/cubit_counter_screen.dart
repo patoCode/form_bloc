@@ -26,11 +26,17 @@ class _CubitCounterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // * Al igual que Riverpod podemos escuchar los cambios del estado utilizando la siguiente linea
-    final counterState = context.watch<CounterCubit>().state;
+    // * Para evitar que se redibujen todos los widgets
+    // final counterState = context.watch<CounterCubit>().state;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cubit counter ${counterState.transactionCount}"),
+        // * Utilizamos el widget <select> del contexto con el cual podemos evitar la linea 30!
+        title: context.select(
+          (CounterCubit value) {
+            return Text("Cubit counter ${value.state.transactionCount}");
+          },
+        ),
         actions: [
           IconButton(
             onPressed: () => context.read<CounterCubit>().reset(),
