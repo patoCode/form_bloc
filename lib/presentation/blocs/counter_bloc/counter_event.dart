@@ -14,3 +14,5 @@ class CounterIncresed extends CounterEvent {
 
   const CounterIncresed(this.values);
 }
+
+class CounterReset extends CounterEvent {}
