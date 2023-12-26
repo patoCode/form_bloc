@@ -23,30 +23,24 @@ class BlocCounterScreen extends StatelessWidget {
         children: [
           FloatingActionButton(
             heroTag: '1',
-            child: const Icon(
-              Icons.work_rounded,
-            ),
-            onPressed: () {},
+            child: const Text("+3"),
+            onPressed: () => () {},
           ),
           const SizedBox(
             height: 10,
           ),
           FloatingActionButton(
             heroTag: '2',
-            child: const Icon(
-              Icons.adobe_rounded,
-            ),
-            onPressed: () {},
+            child: const Text("+2"),
+            onPressed: () => () {},
           ),
           const SizedBox(
             height: 10,
           ),
           FloatingActionButton(
             heroTag: '3',
-            child: const Icon(
-              Icons.workspaces_rounded,
-            ),
-            onPressed: () {},
+            child: const Text("+1"),
+            onPressed: () => () {},
           ),
           const SizedBox(
             height: 10,
