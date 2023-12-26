@@ -23,6 +23,7 @@ class _CubitCounterView extends StatelessWidget {
     ctx.read<CounterCubit>().increaseBy(value);
   }
 
+  // -- Prueba de commit
   @override
   Widget build(BuildContext context) {
     // * Al igual que Riverpod podemos escuchar los cambios del estado utilizando la siguiente linea
