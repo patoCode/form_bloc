@@ -54,12 +54,10 @@ class _RegisterForm extends StatelessWidget {
       child: Column(
         children: [
           CustomTextFormField(
-            label: "nombre de usuario",
+            label: "nombre de usuario ",
             onChanged: (value) => registerCubit.nameChanged,
             // * validacion disponible porque estamos usando Formz y tenemos el campo personalizado
-            errorMessage: username.isPure || username.isValid
-                ? null
-                : 'Usuario no valido',
+            errorMessage: username.errorMessage,
           ),
           const SizedBox(height: 40),
           CustomTextFormField(
@@ -68,9 +66,11 @@ class _RegisterForm extends StatelessWidget {
           ),
           const SizedBox(height: 40),
           CustomTextFormField(
-            label: "Password",
+            label: "Password ",
             obscureText: true,
             onChanged: (value) => registerCubit.passwordChanged,
+            // * validacion disponible porque estamos usando Formz y tenemos el campo personalizado
+            errorMessage: password.errorMessage,
           ),
           const SizedBox(height: 40),
           FilledButton.tonalIcon(

@@ -13,6 +13,20 @@ class Username extends FormzInput<String, UsernameError> {
   // * Aca se recomienda que el parametro value sea OBLIGATORIO
   const Username.dirty(String value) : super.dirty(value);
 
+  // * Metodo que permite obtener los mensajes de ERROR si existieran
+  String? get errorMessage {
+    if (isValid || isPure) return null;
+    // * displayError es el metodo que permite desplegar los mensajes de error
+    if (displayError == UsernameError.empty) {
+      return 'El campo es requerido input';
+    }
+    if (displayError == UsernameError.length) {
+      return 'Se necesitan al menos 6 caracteres input';
+    }
+
+    return null;
+  }
+
   // Override validator to handle validating a given input value.
   @override
   UsernameError? validator(String value) {
