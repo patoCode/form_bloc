@@ -22,7 +22,6 @@ class RegisterScreen extends StatelessWidget {
 
 class _RegisterView extends StatelessWidget {
   const _RegisterView();
-
   @override
   Widget build(BuildContext context) {
     return const SafeArea(
@@ -42,27 +41,25 @@ class _RegisterView extends StatelessWidget {
   }
 }
 
-class _RegisterForm extends StatefulWidget {
+class _RegisterForm extends StatelessWidget {
   const _RegisterForm();
-
-  @override
-  State<_RegisterForm> createState() => _RegisterFormState();
-}
-
-class _RegisterFormState extends State<_RegisterForm> {
-  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     final registerCubit = context.watch<RegisterCubit>();
+    final username = registerCubit.state.name;
+    final password = registerCubit.state.password;
 
     return Form(
-      key: _formkey,
       child: Column(
         children: [
           CustomTextFormField(
             label: "nombre de usuario",
-            onChanged: (value) => registerCubit.nameChanged(value),
+            onChanged: (value) => registerCubit.nameChanged,
+            // * validacion disponible porque estamos usando Formz y tenemos el campo personalizado
+            errorMessage: username.isPure || username.isValid
+                ? null
+                : 'Usuario no valido',
           ),
           const SizedBox(height: 40),
           CustomTextFormField(
@@ -73,13 +70,13 @@ class _RegisterFormState extends State<_RegisterForm> {
           CustomTextFormField(
             label: "Password",
             obscureText: true,
-            onChanged: (value) => registerCubit.passwordChanged(value),
+            onChanged: (value) => registerCubit.passwordChanged,
           ),
           const SizedBox(height: 40),
           FilledButton.tonalIcon(
             onPressed: () {
               //print("$name, $email, $password");
-              registerCubit.onSUbmit();
+              registerCubit.onSubmit();
             },
             icon: const Icon(Icons.save),
             label: const Text("Guardar"),
